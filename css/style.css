@@ -1,0 +1,10 @@
+.main_form{
+	background: #7acce4;
+    text-align: center;
+    width: 200px;
+    padding: 10px;
+    margin: 0 auto 0 auto;
+}
+.main_form>*{
+	margin-top: 10px;
+}
