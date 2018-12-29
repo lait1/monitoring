@@ -83,9 +83,9 @@ CREATE TABLE `trackers` (
 --
 
 INSERT INTO `trackers` (`Id_track`, `Name_track`, `Link_track`, `login_track`, `pass_track`) VALUES
-(1, 'Лост Фильм', 'http://www.lostfilm.tv/', 'lait123', 'uii80byu'),
-(2, 'Нова Фильм', 'http://newstudio.tv/', 'lait123', 'uii80byu'),
-(3, 'АлексФильм', 'https://alexfilm.cc/', 'lait123', 'uii80byu');
+(1, 'Лост Фильм', 'http://www.lostfilm.tv/', 'liar', 'uii80byu'),
+(2, 'Нова Фильм', 'http://newstudio.tv/', 'liar', 'uii80byu'),
+(3, 'АлексФильм', 'https://alexfilm.cc/', 'liar', 'uii80byu');
 
 --
 -- Индексы сохранённых таблиц
