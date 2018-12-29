@@ -3,7 +3,7 @@ include 'options.php';
 
  ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<link href="css/style.css" rel="stylesheet" >
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -34,33 +34,24 @@ include 'options.php';
 	        <tr>
 	          <th>#</th>
 	          <th>Наименование</th>
+	          <th>Трекер</th>
 	          <th>Обновление</th>
 	          <th>Скачать</th>
-	          <th>Удалить</th>
 	        </tr>
 	      </thead>
 	      <tbody>
-	        <tr>
-	          <td>1</td>
-	          <td>Барыги: Мексика</td>
-	          <td>29 ДЕКАБРЯ 2018</td>
-	          <td>Скачать</td>
-	          <td>Удалить</td>
-	        </tr>
-	        <tr>
-	          <td>2</td>
-	          <td>Страна приливов</td>
-	          <td>29 ДЕКАБРЯ 2018</td>
-	          <td>Скачать</td>
-	          <td>Удалить</td>
-	        </tr>
-	        <tr>
-	          <td>3</td>
-	          <td>1Викинги</td>
-	          <td>29 ДЕКАБРЯ 2018</td>
-	          <td>Скачать</td>
-	          <td>Удалить</td>
-	        </tr>
+	      <?php 
+	      $query = $connection->query("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track");
+			while($link = $query->fetch(PDO::FETCH_ASSOC)){ 
+				echo'<tr>';
+		        echo'  <td>'.$link['Id_link'].'</td>';
+		        echo'  <td><a href="'.$link['Distrib_link'].'">'.$link['Name_link'].'</a></td>';
+		        echo'  <td>'.$link['Name_track'].'</td>';
+		        echo'  <td>'.$link['last_update'].'</td>';
+		        echo'  <td><a href="C:\Users\Dexter\Downloads\[alexfilm.cc].t1485.torrent">Скачать</a></td>';
+		        echo'</tr>';
+			}
+	      ?>
 	      </tbody>
 	    </table>
 </div>	
@@ -68,77 +59,97 @@ include 'options.php';
 <div class="modal fade" id="add_tracker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Добавить Трекер</h4>
-      </div>
-      <div class="modal-body">
-		  <form class="form-horizontal" role="form">
-		  	<div class="form-group">
-			    <label for="inputNameTracker" class="col-sm-2 control-label">Название</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputNameTracker" placeholder="Название">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputLogin" class="col-sm-2 control-label">URL</label>
-			    <div class="col-sm-10">
-			      <input type="url" class="form-control" id="inputUrlTracker" placeholder="Ссылка">
-			    </div>
-			  </div>
+    <form class="form-horizontal" role="form" method="post" action="function.php">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" id="myModalLabel1">Добавить Трекер</h4>
+	      </div>
+	      <div class="modal-body">
+			  
+			  	<div class="form-group">
+				    <label for="inputNameTracker" class="col-sm-2 control-label">Название</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="inputNameTracker" name="inputNameTracker" placeholder="Название">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputUrlTracker" class="col-sm-2 control-label">URL</label>
+				    <div class="col-sm-10">
+				      <input type="url" class="form-control" id="inputUrlTracker" name="inputUrlTracker" placeholder="Ссылка">
+				    </div>
+				  </div>
 
-			  <div class="form-group">
-			    <label for="inputLogin" class="col-sm-2 control-label">Login</label>
-			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputLogin" placeholder="Login">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputPassword" class="col-sm-2 control-label">Пароль</label>
-			    <div class="col-sm-10">
-			      <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-			    </div>
-			  </div>
-		  </form>
-      </div>
+				  <div class="form-group">
+				    <label for="inputLogin" class="col-sm-2 control-label">Login</label>
+				    <div class="col-sm-10">
+				      <input type="text" class="form-control" id="inputLogin" name="inputLogin" placeholder="Login">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label for="inputPassword" class="col-sm-2 control-label">Пароль</label>
+				    <div class="col-sm-10">
+				      <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
+				    </div>
+				  </div>
+			  
+	      </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Сохранить</button>
+        <button type="submit" class="btn btn-primary" name="subTracker">Сохранить</button>
       </div>
-    </div>
-  </div>
-</div>
 
+    </form>
+  	</div>
+	</div>
+</div>
 <!-- Moda2 -->
 <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
+<form class="form-horizontal" role="form" method="post" action="function.php">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Добавить раздачу</h4>
+        <h4 class="modal-title" id="myModalLabel2">Добавить раздачу</h4>
       </div>
+
       <div class="modal-body">
-        <form class="form-horizontal" role="form">
+        
+        	<div class="form-group">
+				<label for="inputNameLinkTracker" class="col-sm-2 control-label">Трекер</label>
+			<div class="col-sm-10">
+				<select class="form-control" name="inputNameLinkTracker">
+			<?php
+			$query = $connection->query("SELECT Id_track, Name_track FROM trackers");
+			while($tracker = $query->fetch(PDO::FETCH_ASSOC)){ 
+				echo'<option value="'.$tracker['Id_track'].'">'.$tracker['Name_track'].'</option>';
+
+			}
+			 ?>
+	        	</select>
+	        	</div>
+			  </div>	
 		  	<div class="form-group">
-			    <label for="inputNameTracker" class="col-sm-2 control-label">Название</label>
+			    <label for="inputNameLink" class="col-sm-2 control-label">Название</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputNameTracker" placeholder="Название">
+			      <input type="text" class="form-control" id="inputNameLink" name="inputNameLink" placeholder="Название">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputLogin" class="col-sm-2 control-label">URL</label>
+			    <label for="inputUrlLink" class="col-sm-2 control-label">URL</label>
 			    <div class="col-sm-10">
-			      <input type="url" class="form-control" id="inputUrlTracker" placeholder="Ссылка">
+			      <input type="url" class="form-control" id="inputUrlLink" name="inputUrlLink" placeholder="Ссылка">
 			    </div>
 			  </div>
-		  </form>
       </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-        <button type="button" class="btn btn-primary">Сохранить</button>
+        <button type="submit" class="btn btn-primary" name="subLink">Сохранить</button>
       </div>
-    </div>
+
+ </form>
   </div>
+</div>
 </div>
 </body>
 </html>
