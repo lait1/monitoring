@@ -29,7 +29,7 @@ if(isset($_POST['subLink'])){
 
         $add_row = $connection->exec("INSERT INTO links SET Name_link='$inputNameLink', 
         													Distrib_link='$inputUrlLink', 
-        													New_flag='0',
+        													last_update='0',
         													Tracker='$inputNameLinkTracker',
         													Path_file=''");
         if($add_row){
