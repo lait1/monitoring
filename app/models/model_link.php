@@ -9,11 +9,9 @@ class Model_Link {
     public static function getLinks() {
         $Link = [];
         $LinkArray = Database::query("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track");
-        var_dump($LinkArray);
         foreach ($LinkArray as $LinkData) {
             $Link[] = new Model_Link($LinkData);
         }
-        var_dump($Link);
         return $Link;
     }
 

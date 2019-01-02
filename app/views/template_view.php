@@ -88,7 +88,7 @@
         	<div class="form-group">
 				<label for="inputNameLinkTracker" class="col-sm-2 control-label">Трекер</label>
 			<div class="col-sm-10">
-				<select class="form-control" name="inputNameLinkTracker">
+				<select class="form-control" name="inputNameLinkTracker"
 			<?php
 			// $query = $connection->query("SELECT Id_track, Name_track FROM trackers");
 			// while($tracker = $query->fetch(PDO::FETCH_ASSOC)){ 

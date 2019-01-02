@@ -11,11 +11,11 @@ class Database
 
 	public static function query($sql, $params= NULL) { 
 	Database::openConnection(); 
-		
+
     $stmt = self::$connection->prepare($sql); 
     $stmt->execute($params); 
 
-     return $stmt->fetch(PDO::FETCH_ASSOC); 
+     return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     } 
 
 }
