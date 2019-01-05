@@ -12,7 +12,7 @@ class Model_Tracker {
         $track = [];
         $trackArray = Database::getAll("SELECT * FROM trackers");
         foreach ($trackArray as $trackData) {
-            $track[] = new Model_Link($trackData);
+            $track[] = new Model_Tracker($trackData);
         }
         return $track;
     }

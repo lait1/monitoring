@@ -4,7 +4,9 @@ $(document).ready(function() {
 	  dataType: 'json',
 	  url: 'tracker',
 	  success: function(data){
-	    $('#add_link select').html('<option value=' + data.Id_track + '>' + data.Name_track+ '</option>');
+	  	$.each(data, function(index,element){
+	  		$('#add_link select').append('<option value=' + element.Id_track + '>' + element.Name_track+ '</option>');
+	  	})
 	  },
 	  error: function(msg){
          alert(msg);
