@@ -6,7 +6,7 @@ class Model_Link {
     public $Tracker;
     public $last_update;
 
-    public static function getLinks() {
+    public static function getAllLinks() {
         $Link = [];
         $LinkArray = Database::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track");
         foreach ($LinkArray as $LinkData) {
@@ -15,9 +15,22 @@ class Model_Link {
         return $Link;
     }
 
+    public static function getLink($id) {
+        $Link = [];
+        $LinkArray = Database::getRow("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track and ID_link=$id");
+
+        return $LinkArray;
+    }
+
     public function addLink() {
         $addLink = Database::add("INSERT INTO links SET Name_link='$this->Name_link',Distrib_link='$this->Distrib_link', last_update='$this->last_update', Tracker='$this->Tracker', Path_file=''");
         return $addLink;
+
+    }
+
+    public function DeleteLink($id) {
+        $DeleteLink = Database::add("DELETE FROM links WHERE Id_link = $id");
+        return $DeleteLink;
 
     }
 

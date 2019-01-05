@@ -14,13 +14,11 @@
 	<div class="row">
 	<h1 class="main_title">Мониторинг раздач</h1></div>
 	<div class="row">
-		<div class="col-md-9">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_tracker">Добавить трекер</button>
-			</div>
-		<div class="col-md-3">
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#add_link">Добавить раздачу</button>
-			</div>
+			<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_tracker">Добавить трекер</button></p>
+			<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_link">Добавить раздачу</button></p>
+			<p><button id="#update" type="button" class="btn btn-info" data-toggle="modal" data-target="#update">Проверить состояние</button></p>
 	</div>
+	<br>
 	      <?php 
 		include 'app/views/'.$content_view; 
 	      ?>

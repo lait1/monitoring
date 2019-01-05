@@ -12,4 +12,20 @@ $(document).ready(function() {
          alert(msg);
       }
 	});
+	$('#update').on('click', 'button', function(){
+		$.ajax({
+
+		  dataType: 'json',
+		  url: 'parser',
+		  success: function(data){
+		  },
+		  error: function(msg){
+	         alert(msg);
+	      }
+		});
+	});
+
+
+
+
 });

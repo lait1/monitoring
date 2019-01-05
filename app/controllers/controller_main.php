@@ -5,7 +5,7 @@ class Controller_main extends Controller {
 	public function action_index()
 	{
 
-		$data = Model_Link::getLinks();
+		$data = Model_Link::getAllLinks();
 		$this->view->generate('main_view.php', 'template_view.php', $data);
 	}
 	public function action_create()

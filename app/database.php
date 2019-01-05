@@ -17,6 +17,14 @@ class Database
 
      return $stmt->fetchAll(PDO::FETCH_ASSOC); 
     } 
+      public static function getRow($sql, $params= array()) { 
+  Database::openConnection(); 
+
+    $stmt = self::$connection->prepare($sql); 
+    $stmt->execute($params); 
+
+     return $stmt->fetch(PDO::FETCH_ASSOC); 
+    } 
 
     public static function add($sql, $params= array()) { 
 	Database::openConnection(); 
