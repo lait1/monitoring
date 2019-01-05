@@ -30,7 +30,7 @@
 <div class="modal fade" id="add_tracker" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-    <form class="form-horizontal" role="form" method="post" action="function.php">
+    <form class="form-horizontal" role="form" method="post" action="tracker/create">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	        <h4 class="modal-title" id="myModalLabel1">Добавить Трекер</h4>
@@ -40,26 +40,26 @@
 			  	<div class="form-group">
 				    <label for="inputNameTracker" class="col-sm-2 control-label">Название</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputNameTracker" name="inputNameTracker" placeholder="Название">
+				      <input type="text" class="form-control" id="inputNameTracker" name="Name_track" placeholder="Название">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="inputUrlTracker" class="col-sm-2 control-label">URL</label>
 				    <div class="col-sm-10">
-				      <input type="url" class="form-control" id="inputUrlTracker" name="inputUrlTracker" placeholder="Ссылка">
+				      <input type="url" class="form-control" id="inputUrlTracker" name="Link_track" placeholder="Ссылка">
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				    <label for="inputLogin" class="col-sm-2 control-label">Login</label>
 				    <div class="col-sm-10">
-				      <input type="text" class="form-control" id="inputLogin" name="inputLogin" placeholder="Login">
+				      <input type="text" class="form-control" id="inputLogin" name="login_track" placeholder="Login">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label for="inputPassword" class="col-sm-2 control-label">Пароль</label>
 				    <div class="col-sm-10">
-				      <input type="password" class="form-control" id="inputPassword" name="inputPassword" placeholder="Password">
+				      <input type="password" class="form-control" id="inputPassword" name="pass_track" placeholder="Password">
 				    </div>
 				  </div>
 			  
@@ -77,7 +77,7 @@
 <div class="modal fade" id="add_link" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-<form class="form-horizontal" role="form" method="post" action="function.php">
+<form class="form-horizontal" role="form" method="post" action="main/create">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel2">Добавить раздачу</h4>
@@ -88,30 +88,29 @@
         	<div class="form-group">
 				<label for="inputNameLinkTracker" class="col-sm-2 control-label">Трекер</label>
 			<div class="col-sm-10">
-				<select class="form-control" name="inputNameLinkTracker">
-
-			<?php
-			// $query = $connection->query("SELECT Id_track, Name_track FROM trackers");
-			// while($tracker = $query->fetch(PDO::FETCH_ASSOC)){ 
-			// 	echo'<option value="'.$tracker['Id_track'].'">'.$tracker['Name_track'].'</option>';
-
-			// }
-			 ?>
+				<select class="form-control" name="Name_track">
 	        	</select>
 	        	</div>
 			  </div>	
 		  	<div class="form-group">
 			    <label for="inputNameLink" class="col-sm-2 control-label">Название</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputNameLink" name="inputNameLink" placeholder="Название">
+			      <input type="text" class="form-control" id="inputNameLink" name="Name_link" placeholder="Название">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputUrlLink" class="col-sm-2 control-label">URL</label>
 			    <div class="col-sm-10">
-			      <input type="url" class="form-control" id="inputUrlLink" name="inputUrlLink" placeholder="Ссылка">
+			      <input type="url" class="form-control" id="inputUrlLink" name="Distrib_link" placeholder="Ссылка">
 			    </div>
 			  </div>
+			  <div class="form-group">
+			    <label for="inputLastLink" class="col-sm-2 control-label">Обновление</label>
+			    <div class="col-sm-10">
+			      <input type="date" class="form-control" id="inputLastLink" name="last_update" placeholder="Ссылка">
+			    </div>
+			  </div>
+
       </div>
 
       <div class="modal-footer">

@@ -1,7 +1,7 @@
 <?php
 
 class Model_Tracker {
-	
+
     public $Id_track;
     public $Name_track;
     public $Link_track;
@@ -17,8 +17,9 @@ class Model_Tracker {
         return $track;
     }
 
-    public static function addTracker() {
-        $AddTracker = Database::add("INSERT INTO trackers SET Name_track='$inputNameTracker', Link_track='$inputUrlTracker',login_track='$inputLogin', pass_track='$inputPassword'");
+    public function addTracker() {
+        $AddTracker = Database::add("INSERT INTO trackers SET Name_track='$this->Name_track', Link_track='$this->Link_track',login_track='$this->login_track', pass_track='$this->pass_track'");
+        return $AddTracker;
 
     }
 

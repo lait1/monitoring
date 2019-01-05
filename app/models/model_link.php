@@ -15,13 +15,14 @@ class Model_Link {
         return $Link;
     }
 
-    public static function addLink() {
+    public function addLink() {
         $addLink = Database::add("INSERT INTO links SET Name_link='$this->Name_link',Distrib_link='$this->Distrib_link', last_update='$this->last_update', Tracker='$this->Tracker', Path_file=''");
+        return $addLink;
 
     }
 
     public function __construct($data) {
-        $this->Id_link = $data['Id_link'];
+        $this->Id_link=$data['Id_link'];;
         $this->Name_link = $data['Name_link'];
         $this->Distrib_link = $data['Distrib_link'];
         $this->Tracker = $data['Name_track']; // 

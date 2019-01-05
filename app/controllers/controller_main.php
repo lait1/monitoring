@@ -8,4 +8,18 @@ class Controller_main extends Controller {
 		$data = Model_Link::getLinks();
 		$this->view->generate('main_view.php', 'template_view.php', $data);
 	}
+	public function action_create()
+	{
+
+		$data =new Model_Link($_POST);
+		if($data->addLink())
+		{
+	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'monitoring/';
+			header('Location:'.$host);
+		}
+		else 
+		{	
+			echo "Ошибка,добавление не удалось"; 
+        }
+	}
 }
