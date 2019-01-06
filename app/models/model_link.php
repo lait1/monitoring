@@ -28,6 +28,12 @@ class Model_Link {
 
     }
 
+    public static function UpdateLink($Id_link, $last_update) {
+        $UpdateLink = Database::add("UPDATE links SET last_update = '$last_update' WHERE Id_link = $Id_link");
+        return $UpdateLink;
+
+    }
+
     public function DeleteLink($id) {
         $DeleteLink = Database::add("DELETE FROM links WHERE Id_link = $id");
         return $DeleteLink;

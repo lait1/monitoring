@@ -1,27 +1,21 @@
 <?php
 class Model_Parser{
-	public static function get_web_page( $url ) {
 
-	  $ch = curl_init( $url );
+	public static function get_web_page( $data ) {
+		foreach($data as $link){
+			$html=file_get_html($link->Distrib_link);
+			$data = $html->find('td.delta',1)->plaintext;
 
-	  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);   // возвращает веб-страницу
-	  curl_setopt($ch, CURLOPT_HEADER, 0);           // не возвращает заголовки
-	  curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);   // переходит по редиректам
-	  curl_setopt($ch, CURLOPT_ENCODING, "");        // обрабатывает все кодировки
-	  curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120); // таймаут соединения
-	  curl_setopt($ch, CURLOPT_TIMEOUT, 120);        // таймаут ответа
-	  curl_setopt($ch, CURLOPT_MAXREDIRS, 10);       // останавливаться после 10-ого редиректа
+			$result = substr($data, 4, -16);
+			$newDate= date("Y-m-d", strtotime($result));
 
-	  $content = curl_exec( $ch );
-	  $err     = curl_errno( $ch );
-	  $errmsg  = curl_error( $ch );
-	  $header  = curl_getinfo( $ch );
-	  curl_close( $ch );
+			if($newDate > $link->last_update){
+				$UpdateLink=Model_Link::UpdateLink($link->Id_link, $newDate);
 
-	  $header['errno']   = $err;
-	  $header['errmsg']  = $errmsg;
-	  $header['content'] = $content;
-	  return $header;
+			}
+
+		}
+
 	}
 
 
