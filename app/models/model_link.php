@@ -5,10 +5,11 @@ class Model_Link {
     public $Distrib_link;
     public $Tracker;
     public $last_update;
-
+    public $Path_file;
+    
     public static function getAllLinks() {
         $Link = [];
-        $LinkArray = Database::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track");
+        $LinkArray = Database::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update, Path_file FROM links inner join trackers where Tracker=id_track");
         foreach ($LinkArray as $LinkData) {
             $Link[] = new Model_Link($LinkData);
         }
@@ -33,6 +34,11 @@ class Model_Link {
         return $UpdateLink;
 
     }
+    public static function UpdateLinkTorrent($Id_link, $Path_file) {
+        $UpdateLinkTorrent = Database::add("UPDATE links SET Path_file = '$Path_file' WHERE Id_link = $Id_link");
+        return $UpdateLinkTorrent;
+
+    }
 
     public function DeleteLink($id) {
         $DeleteLink = Database::add("DELETE FROM links WHERE Id_link = $id");
@@ -46,6 +52,7 @@ class Model_Link {
         $this->Distrib_link = $data['Distrib_link'];
         $this->Tracker = $data['Name_track']; // 
         $this->last_update = $data['last_update'];
+        $this->Path_file = $data['Path_file'];
     }
 
 }

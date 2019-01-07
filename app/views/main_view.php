@@ -16,7 +16,7 @@
 		        echo'  <td><a href="'.$link->Distrib_link.'">'.$link->Name_link.'</a></td>';
 		        echo'  <td>'.$link->Tracker.'</td>';
 		        echo'  <td>'.$link->last_update.'</td>';
-		        echo'  <td><a href="C:\Users\Dexter\Downloads\[alexfilm.cc].t1485.torrent">Скачать</a></td>';
+		        echo'  <td><a href="'.$link->Path_file.'">Скачать</a></td>';
 		        echo'</tr>';
 			}
 	      ?>

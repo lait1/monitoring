@@ -5,7 +5,7 @@ class Controller_tracker extends Controller {
 	public function action_index()
 	{
 
-		$data = Model_Tracker::getTrackers();
+		$data = Model_Tracker::getAllTrackers();
 		echo json_encode($data);
 	}
 
