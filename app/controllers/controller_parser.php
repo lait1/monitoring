@@ -7,16 +7,20 @@ class Controller_parser extends Controller {
 	public function action_index()
 	{
 		$link = Model_Link::getAllLinks();
-		// $tracker = Model_Tracker::getAllTrackers();
+
+		$tracker = Model_Tracker::getAllTrackers();
 		foreach ($link as $data) {
 			$url = $data->Distrib_link;
 			$tracker = Model_Tracker::getTracker($data->Id_link);
 			$html = Model_Parser::Read($url, $tracker->cookies);
 
 		// Получение новой даты
-			// $newDate= Model_Parser::get_link_date($html);
-			// if($newDate > $data->last_update){
-			// 	$UpdateLink=Model_Link::UpdateLink($data->Id_link, $newDate);
+			$newDate= Model_Parser::get_link_date($html);
+			if($newDate > $data->last_update){
+				$UpdateLinks=Model_Link::UpdateLink($data->Id_link, $newDate);
+					if (!$UpdateLinks) {
+						$error=true;
+					}
 				$episode= Model_Parser::get_link_episode($html, $tracker->Link_track);
 
 				$html = Model_Parser::Read($episode, $tracker->cookies);
@@ -28,13 +32,20 @@ class Controller_parser extends Controller {
 
 				$html = Model_Parser::Read($link_torrent_2, $tracker->cookies);
 				$link_torrent_real = Model_Parser::get_link_torrent_2($html);
-				
+
 				$UpdateLinkTorrent=Model_Link::UpdateLinkTorrent($data->Id_link, $link_torrent_real);
 
-			// }
+				if (!$UpdateLinkTorrent) {
+						$error=true;
+					}
+			}
 
 			
-			echo var_dump($link_torrent_real);
+		// 	// echo var_dump($link_torrent_real);
+		}
+		if (!$error) {
+			$host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'monitoring/';
+			header('Location:'.$host);
 		}
 		// $data = Model_Parser::get_web_page($link);
 

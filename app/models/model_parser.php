@@ -61,7 +61,7 @@ public static function Read($url, $cookie, $post=0){
 			$newDate= date("Y-m-d", strtotime($result));
 			// $res = $html->find('td.alpha',0)->plaintext;
 			// $res = $html->find('a.forgot-password',0)->plaintext;
-			return $data;
+			return $newDate;
 	}
 
 	public static function get_link_episode( $data, $url ) {
