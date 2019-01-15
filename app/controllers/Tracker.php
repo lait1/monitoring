@@ -1,18 +1,21 @@
 <?php
-class Controller_tracker extends Controller {
+namespace app\controllers;
+use app\models\Tracker as ModelTracker;
+
+class Tracker extends Controller {
 
 
 	public function action_index()
 	{
 
-		$data = Model_Tracker::getAllTrackers();
+		$data = ModelTracker::getAllTrackers();
 		echo json_encode($data);
 	}
 
 	public function action_create()
 	{
 
-		$data = new Model_Tracker($_POST);
+		$data = new ModelTracker($_POST);
 		if($data->addTracker())
 		{
 	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'monitoring/';

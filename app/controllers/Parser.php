@@ -1,17 +1,20 @@
 <?php
-require_once 'app/models/model_tracker.php';
+namespace app\controllers;
+use app\models\Link;
+use app\models\Tracker;
+use app\models\Parser as Model_Parser;
 
-class Controller_parser extends Controller {
+class Parser extends Controller {
 
 
 	public function action_index()
 	{
-		$link = Model_Link::getAllLinks();
+		$link = Link::getAllLinks();
 
-		$tracker = Model_Tracker::getAllTrackers();
+		$tracker = Tracker::getAllTrackers();
 		foreach ($link as $data) {
 			$url = $data->Distrib_link;
-			$tracker = Model_Tracker::getTracker($data->Id_link);
+			$tracker = Tracker::getTracker($data->Id_link);
 			///////////////////////////////
 			//На будущее, проверяем какой трекер и от этого выбирается вид парсера
 			//////////////////////////////
@@ -19,7 +22,7 @@ class Controller_parser extends Controller {
 			// Получение новой даты
 			$newDate= Model_Parser::get_link_date($html);
 			if($newDate > $data->last_update){
-				$UpdateLinks=Model_Link::UpdateLink($data->Id_link, $newDate);
+				$UpdateLinks=Link::UpdateLink($data->Id_link, $newDate);
 					if (!$UpdateLinks) {
 						$error=true;
 					}
@@ -35,7 +38,7 @@ class Controller_parser extends Controller {
 				$html = Model_Parser::Read($link_torrent_2, $tracker->cookies);
 				$link_torrent_real = Model_Parser::get_link_torrent($html, '3');
 
-				$UpdateLinkTorrent=Model_Link::UpdateLinkTorrent($data->Id_link, $link_torrent_real);
+				$UpdateLinkTorrent=Link::UpdateLinkTorrent($data->Id_link, $link_torrent_real);
 
 				if (!$UpdateLinkTorrent) {
 						$error=true;

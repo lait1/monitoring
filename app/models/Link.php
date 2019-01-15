@@ -1,6 +1,6 @@
 <?php
 namespace app\models;
-use app\core\database as DatabasePDO;
+use app\core\database;
 
 class Link {
     public $Id_link;
@@ -12,7 +12,7 @@ class Link {
     
     public static function getAllLinks() {
         $Link = [];
-        $LinkArray = DatabasePDO::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update, Path_file FROM links inner join trackers where Tracker=id_track");
+        $LinkArray = Database::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update, Path_file FROM links inner join trackers where Tracker=id_track");
         foreach ($LinkArray as $LinkData) {
             $Link[] = new Link($LinkData);
         }
@@ -21,30 +21,30 @@ class Link {
 
     public static function getLink($id) {
         $Link = [];
-        $LinkArray = DatabasePDO::getRow("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track and ID_link=$id");
+        $LinkArray = Database::getRow("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track and ID_link=$id");
 
         return $LinkArray;
     }
 
     public function addLink() {
-        $addLink = DatabasePDO::add("INSERT INTO links SET Name_link='$this->Name_link',Distrib_link='$this->Distrib_link', last_update='$this->last_update', Tracker='$this->Tracker', Path_file=''");
+        $addLink = Database::add("INSERT INTO links SET Name_link='$this->Name_link',Distrib_link='$this->Distrib_link', last_update='$this->last_update', Tracker='$this->Tracker', Path_file=''");
         return $addLink;
 
     }
 
     public static function UpdateLink($Id_link, $last_update) {
-        $UpdateLink = DatabasePDO::add("UPDATE links SET last_update = '$last_update' WHERE Id_link = $Id_link");
+        $UpdateLink = Database::add("UPDATE links SET last_update = '$last_update' WHERE Id_link = $Id_link");
         return $UpdateLink;
 
     }
     public static function UpdateLinkTorrent($Id_link, $Path_file) {
-        $UpdateLinkTorrent = DatabasePDO::add("UPDATE links SET Path_file = '$Path_file' WHERE Id_link = $Id_link");
+        $UpdateLinkTorrent = Database::add("UPDATE links SET Path_file = '$Path_file' WHERE Id_link = $Id_link");
         return $UpdateLinkTorrent;
 
     }
 
     public function DeleteLink($id) {
-        $DeleteLink = DatabasePDO::add("DELETE FROM links WHERE Id_link = $id");
+        $DeleteLink = Database::add("DELETE FROM links WHERE Id_link = $id");
         return $DeleteLink;
 
     }

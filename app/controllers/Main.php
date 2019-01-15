@@ -1,6 +1,6 @@
 <?php
 namespace app\controllers;
-use app\models\link as Mylink;
+use app\models\link;
 
 class Main extends Controller {
 
@@ -8,13 +8,13 @@ class Main extends Controller {
 	public function action_index()
 	{
 
-		$data = Mylink::getAllLinks();
+		$data = Link::getAllLinks();
 		$this->view->generate('main_view.php', 'template_view.php', $data);
 	}
 	public function action_create()
 	{
 
-		$data =new Mylink($_POST);
+		$data =new Link($_POST);
 		if($data->addLink())
 		{
 	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'monitoring/';

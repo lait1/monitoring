@@ -1,5 +1,8 @@
 <?php
-class Model_Parser{
+namespace app\models;
+use app\core\simple_html_dom;
+
+class Parser{
 
 public static function Read($url, $cookie, $post=0){
 
@@ -21,7 +24,8 @@ public static function Read($url, $cookie, $post=0){
 
 
 	public static function get_link_date( $data ) {
-			$html=str_get_html($data);
+			$html = new simple_html_dom();
+			$html->load($data);
 			$data = $html->find('td.delta',1)->plaintext;
 			$result = substr($data, 4, -16);
 			$newDate= date("Y-m-d", strtotime($result));
@@ -29,21 +33,24 @@ public static function Read($url, $cookie, $post=0){
 	}
 
 	public static function get_link_episode( $data, $url ) {
-			$html=str_get_html($data);
+			$html = new simple_html_dom();
+			$html->load($data);
 			$link = $html->find('td.delta',1)->onclick;
 			preg_match("/goTo\(\'\/(.*)\'/", $link, $routes);
 			return $result = $url.$routes[1];
 	}
 
 	public static function get_link_code_episode( $data) {
-			$html=str_get_html($data);
+			$html = new simple_html_dom();
+			$html->load($data);
 			$link = $html->find('.external-btn',0)->onclick;
 			preg_match("/PlayEpisode\(\'(.*)\'/", $link, $routes);
 			return $routes[1];
 	}
 
 	public static function get_link_torrent( $data, $numb) {
-			$html=str_get_html($data);
+			$html = new simple_html_dom();
+			$html->load($data);
 			$link = $html->find('a', $numb)->href;
 			return $link;
 	}
