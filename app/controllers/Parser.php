@@ -11,7 +11,7 @@ class Parser extends Controller {
 	{
 		$link = Link::getAllLinks();
 
-		$tracker = Tracker::getAllTrackers();
+		// $tracker = Tracker::getAllTrackers();
 		foreach ($link as $data) {
 			$url = $data->Distrib_link;
 			$tracker = Tracker::getTracker($data->Id_link);
@@ -57,6 +57,19 @@ class Parser extends Controller {
 
 	
 	
+	}
+
+	public function action_test(){
+		$data = Link::getLink('5');
+		
+		// $tracker = Tracker::getAllTrackers();
+			$url = $data['Distrib_link'];
+			// $url = 'http://rutor.info/';
+			// $url = 'http://www.lostfilm.tv/';
+			$tracker = Tracker::getTracker($data['Id_link']);
+			$html = Model_Parser::ReadProxy($url, $tracker->cookies, 1);	
+
+			var_dump($html);
 	}
 
   

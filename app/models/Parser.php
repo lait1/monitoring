@@ -28,11 +28,13 @@ public static function ReadProxy($url, $cookie, $type=0){
    curl_setopt($ch, CURLOPT_URL, $url);
    curl_setopt($ch, CURLOPT_HEADER, 0); 
    curl_setopt($ch, CURLOPT_REFERER, $url);
-   curl_setopt($ch, CURLOPT_PROXY, '66.96.200.39:80');
-   if(!empty($type)) 
+   curl_setopt($ch, CURLOPT_PROXY, '145.239.169.44:8080');
+   if(!empty($type)){
+   		curl_setopt($ch, CURLOPT_PROXY, '5.189.131.241:443'); 
    		curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5);
+   	}
    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-   // curl_setopt($ch, CURLOPT_POST, $post!==0);
+   curl_setopt($ch, CURLOPT_POST, 1);
    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
    curl_setopt($ch, CURLOPT_COOKIE, $cookie);
    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (Windows; U; Windows NT 5.0; En; rv:1.8.0.2) Gecko/20070306 Firefox/1.0.0.4");
