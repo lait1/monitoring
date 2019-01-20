@@ -8,6 +8,10 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
+    <script src="js/push.js"></script>
+    <link rel="manifest" href="js/manifest.json" />
+
+
 </head>
 <body>
 <div class="container">
@@ -17,6 +21,9 @@
 			<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_tracker">Добавить трекер</button></p>
 			<p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_link">Добавить раздачу</button></p>
 			<p><a href="http://localhost/monitoring/parser" role="button" class="btn btn-info">Проверить состояние</a></p>
+            <p><button class="js-push-button" disabled>
+                    Получать уведомления
+                </button></p>
 	</div>
 	<br>
 	      <?php 
