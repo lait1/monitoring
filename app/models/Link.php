@@ -20,7 +20,7 @@ class Link {
     }
 
     public static function getLink($id) {
-        $Link = [];
+
         $LinkArray = Database::getRow("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track and ID_link=$id");
 
         return $LinkArray;
