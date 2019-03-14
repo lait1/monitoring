@@ -1,5 +1,8 @@
 <?php
-class Model_Link {
+namespace app\models;
+use app\core\database;
+
+class Link {
     public $Id_link;
     public $Name_link;
     public $Distrib_link;
@@ -11,13 +14,13 @@ class Model_Link {
         $Link = [];
         $LinkArray = Database::getAll("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update, Path_file FROM links inner join trackers where Tracker=id_track");
         foreach ($LinkArray as $LinkData) {
-            $Link[] = new Model_Link($LinkData);
+            $Link[] = new Link($LinkData);
         }
         return $Link;
     }
 
     public static function getLink($id) {
-        $Link = [];
+
         $LinkArray = Database::getRow("SELECT Id_link, Name_link, Distrib_link, Name_track, last_update FROM links inner join trackers where Tracker=id_track and ID_link=$id");
 
         return $LinkArray;

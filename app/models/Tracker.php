@@ -1,6 +1,8 @@
 <?php
+namespace app\models;
+use app\core\database;
 
-class Model_Tracker {
+class Tracker {
     public $Id_track;
     public $Name_track;
     public $Link_track;
@@ -12,15 +14,14 @@ class Model_Tracker {
         $track = [];
         $trackArray = Database::getAll("SELECT * FROM trackers");
         foreach ($trackArray as $trackData) {
-            $track[] = new Model_Tracker($trackData);
+            $track[] = new Tracker($trackData);
         }
         return $track;
     }
 
     public static function getTracker($id) {
-        // $track = [];
         $trackArray = Database::getRow("SELECT Id_track, Name_track, Link_track, login_track, pass_track, cookies  FROM links inner join trackers where Tracker=id_track and ID_link=$id");
-            $track = new Model_Tracker($trackArray);
+            $track = new Tracker($trackArray);
 
         return $track;
     }

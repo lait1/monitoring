@@ -1,17 +1,20 @@
 <?php
-class Controller_main extends Controller {
+namespace app\controllers;
+use app\models\link;
+
+class Main extends Controller {
 
 
 	public function action_index()
 	{
 
-		$data = Model_Link::getAllLinks();
+		$data = Link::getAllLinks();
 		$this->view->generate('main_view.php', 'template_view.php', $data);
 	}
 	public function action_create()
 	{
 
-		$data =new Model_Link($_POST);
+		$data =new Link($_POST);
 		if($data->addLink())
 		{
 	        $host = 'http://'.$_SERVER['HTTP_HOST'].'/'.'monitoring/';

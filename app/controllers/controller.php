@@ -1,4 +1,6 @@
 <?php
+namespace app\controllers;
+
 class Controller {
 	
 	public $model;
@@ -6,7 +8,7 @@ class Controller {
 	
 	public function __construct()
 	{
-		$this->view = new View();
+		$this->view = new \app\core\View();
 	}
 	
 	public function action_index()

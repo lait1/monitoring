@@ -1,6 +1,7 @@
 <?php
+namespace app\controllers;
 
-class Controller_404 extends Controller
+class Error404 extends Controller
 {
 	
 	function action_index()
